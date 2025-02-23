@@ -1,8 +1,9 @@
 public class SimpleTodolistApp {
-    private static String[] todolist = new String[10];
+    private static String[] todolist = new String[5];
 
     public static void main(String[] args) {
-        testShowTodolist();
+        testAddTodolist();
+        // testShowTodolist();
     }
 
     /**
@@ -29,7 +30,39 @@ public class SimpleTodolistApp {
     /**
      * Add todolist
      */
-    public static void addTodolist() {}
+    public static void addTodolist(String todo) {
+        // need to check is full or not
+        var isfull = true;
+        for (String todolist1 : todolist) {
+            if (todolist1 == null) {
+                isfull = false;
+                break;
+            }
+        }
+
+        // isfull is true then resize array
+        if (isfull) {
+            var temp = todolist;
+            todolist = new String[todolist.length * 2];
+
+            System.arraycopy(temp, 0, todolist, 0, temp.length);
+        }
+
+        // need to add iteam which array is null
+        for (int i = 0; i < todolist.length; i++) {
+            if (todolist[i] == null) {
+                todolist[i] = todo;
+                break;
+            }
+        }
+    }
+
+    public static void testAddTodolist() {
+        for (int i = 0; i < 7; i++) {
+            addTodolist("Example TODO" + (i + 1));
+        }
+        showTodolist();
+    }
 
     /**
      * Remove todolist
