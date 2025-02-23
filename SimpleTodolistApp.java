@@ -1,8 +1,11 @@
+
+
 public class SimpleTodolistApp {
     private static String[] todolist = new String[5];
 
     public static void main(String[] args) {
-        testAddTodolist();
+        testRemoveTodolist();
+        // testAddTodolist();
         // testShowTodolist();
     }
 
@@ -67,7 +70,45 @@ public class SimpleTodolistApp {
     /**
      * Remove todolist
      */
-    public static void removeTodolist() {}
+    public static boolean removeTodolist(Integer number) {
+        if ((number - 1) >= todolist.length) {
+            return false;
+        
+        } else if (todolist[number - 1] == null) {
+            return false;
+        
+        } else {
+            for (var i = number - 1; i < todolist.length; i++) {
+                if (i == todolist.length - 1) {
+                    todolist[i] = null;
+
+                } else {
+                    todolist[i] = todolist[i + 1];
+                }
+            }
+            return true;
+        }
+    }
+
+    public static void testRemoveTodolist() {
+        addTodolist("Satu");
+        addTodolist("Dua");
+        addTodolist("Tiga");
+
+        // invalid number 1
+        var result = removeTodolist(20);
+        System.out.println(result);
+
+        // valid number 
+        result = removeTodolist(2);
+        System.out.println(result);
+
+        // valid number but deleted
+        result = removeTodolist(5);
+        System.out.println(result);
+
+        showTodolist();
+    }
 
 
     /**
