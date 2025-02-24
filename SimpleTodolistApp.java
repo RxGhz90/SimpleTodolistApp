@@ -1,10 +1,12 @@
-
+import java.util.Scanner;
 
 public class SimpleTodolistApp {
+    private static Scanner scanner = new Scanner(System.in);
     private static String[] todolist = new String[5];
 
     public static void main(String[] args) {
-        testRemoveTodolist();
+        testInputData();
+        // testRemoveTodolist();
         // testAddTodolist();
         // testShowTodolist();
     }
@@ -108,6 +110,20 @@ public class SimpleTodolistApp {
         System.out.println(result);
 
         showTodolist();
+    }
+
+    public static String inputData(String info) {
+        System.out.print(info + " : ");
+        String data = scanner.nextLine();
+        return data;
+    }
+
+    public static void testInputData() {
+        var name = inputData("Nama");
+        System.out.println("Hi " + name);
+
+        name = inputData("Channel");
+        System.out.println("Hi " + name);
     }
 
 
