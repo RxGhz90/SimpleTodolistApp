@@ -5,7 +5,10 @@ public class SimpleTodolistApp {
     private static String[] todolist = new String[5];
 
     public static void main(String[] args) {
-        testInputData();
+        testViewRemoveTodolist();
+        // testViewAddTodolist();
+        // testViewShowTodolist();
+        // testInputData();
         // testRemoveTodolist();
         // testAddTodolist();
         // testShowTodolist();
@@ -15,6 +18,7 @@ public class SimpleTodolistApp {
      * Show todolist
      */
     public static void showTodolist() {
+        System.out.println("TODOLIST");
         for (int i = 0; i < todolist.length; i++) {
             var todo = todolist[i];
             var listNo = i + 1;
@@ -130,9 +134,84 @@ public class SimpleTodolistApp {
     /**
      * For view each fucntion todolist
      */
-    public static void viewShowTodolist() {}
+    public static void viewShowTodolist() {
+        while (true) { 
+            showTodolist();
+             
+            System.out.println("MENU: ");
+            System.out.println("1. Add");
+            System.out.println("2. Remove");
+            System.out.println("3. Exit");
 
-    public static void viewAddTodolist() {}
+            var input = inputData("Choose the action");
+            if (input.equals("1")) {
+                viewAddTodolist();
 
-    public static void viewRemoveTodolist() {}
+            } else if (input.equals("2")) {
+                viewRemoveTodolist();
+            
+            } else if (input.equals("3")) {
+                break;
+            
+            } else {
+                System.out.println("Invalid input. Choose eiher 1 or 2.");
+            }
+        }
+    }
+
+    public static void testViewShowTodolist() {
+        addTodolist("SATU");
+        addTodolist("DUA");
+        addTodolist("TIGA");
+        addTodolist("EMPAT");
+        addTodolist("LIMA");
+
+        viewShowTodolist();
+    }
+
+    public static void viewAddTodolist() {
+        System.out.println("Add TODOLIST");
+        var todo = inputData("Todo (x to cancel)");
+
+        if (todo.equals("x")) {
+            // Cancel
+        } else {
+            addTodolist(todo);
+        }
+    }
+
+    public static void testViewAddTodolist() {
+        addTodolist("SATU");
+        addTodolist("DUA");
+
+        viewAddTodolist();
+        showTodolist();
+        
+    }
+
+    public static void viewRemoveTodolist() {
+        System.out.println("Remove TODOLIST");
+        var number = inputData("Todo number (x to cancel)");
+
+        if (number.equals("x")) {
+            // Cancel
+        } else {
+            var success = removeTodolist(Integer.valueOf(number));
+
+            if (!success) {
+                System.out.println("Failed to delete todolist : " + number);
+            }
+        }
+    }
+
+    public static void testViewRemoveTodolist() {
+        addTodolist("SATU");
+        addTodolist("DUA");
+        addTodolist("TIGA");
+        addTodolist("EMPAT");
+
+        showTodolist();
+        viewRemoveTodolist();
+        showTodolist();
+    }
 }
